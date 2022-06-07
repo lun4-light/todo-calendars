@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'calendar_page',
+    'todo_lists',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

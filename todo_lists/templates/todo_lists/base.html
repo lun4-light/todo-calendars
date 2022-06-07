@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="kr">
+    <head>
+        <meta charset="UTF-8">
+        {% block title %}
+        {% endblock %}
+    </head>
+    <body>
+        <!-- todo-list -->
+        {% block todolist %}
+        {% endblock %}
+        <!-- footer -->
+        {% include 'todo_lists/footer.html' %}
+        <script type="text/javascript">
+
+
+        </script>
+    </body>
+</html>

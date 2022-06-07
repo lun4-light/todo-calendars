@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'todo_lists/base.html' %}
+
+{% block title %}
+    <title>Todo Lists</title>
+{% endblock %}
+
+{% block todolist %}
+    <div class="wrapper">
+        <div class="header">
+            <div class="date">
+                {% TodoList.date %}
+            </div>
+        </div>
+        <div class="todo-wrapper">
+
+        </div>
+    </div>
+{% endblock %}
