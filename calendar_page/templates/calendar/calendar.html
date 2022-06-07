@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title> Todo Calendar </title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="calendar">
+                <div class="header">
+                    <div class="year-month"></div>
+                    <div class="nav">
+                        <button class="nav-btn go-prev" onclick="prevMonth()">&lt;</button>
+                        <button class="nav-btn go-next" onclick="nextMonth()">&gt;</button>
+                    </div>
+                </div>
+                <div class="main">
+                    <div class="days">
+                        <div class="day">일</div>
+                        <div class="day">월</div>
+                        <div class="day">화</div>
+                        <div class="day">수</div>
+                        <div class="day">목</div>
+                        <div class="day">금</div>
+                        <div class="day">토</div>
+                    </div>
+                    <div class="dates"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+        {% include 'calendar/footer.html'%}
+
+        <script type="text/javascript">
+            let date = new Date();
+
+            const renderCalendar = () => {
+                const year = date.getFullYear();
+                const month = date.getMonth();
+
+                document.querySelector('.year-month').textContent = `${year}년 ${month + 1}월`;
+
+                const firstDay = new Date(year, month, 1);
+                const lastDate = new Date(year, month + 1, 0);
+
+                const firstDate = firstDay.getDay();
+                const curLastDate = lastDate.getDate();
+                const curLastDay = lastDate.getDay();
+                const dateList = [...Array(curLastDate + 1).keys()].slice(1);
+
+                for (let i = 0 ; i < firstDate ; i++) {
+                    dateList.unshift("");
+                }
+
+                for (let i = curLastDay + 1; i < 7; i++) {
+                    dateList.push("");
+                }
+
+                dateList.forEach((date, i) => {
+                    dateList[i] = `<div class="date">${date}</span></div>`;
+                })
+
+                document.querySelector('.dates').innerHTML = dateList.join('');
+            }
+
+            const prevMonth = () => {
+                date.setDate(1);
+                date.setMonth(date.getMonth() - 1);
+                renderCalendar();
+            }
+
+            const nextMonth = () => {
+                date.setDate(1);
+                date.setMonth(date.getMonth() + 1);
+                renderCalendar();
+            }
+
+            renderCalendar();
+        </script>
+    </body>
+</html>
