@@ -5,7 +5,8 @@
     <head>
         <meta charset="UTF-8">
         <title> Todo Calendar </title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
     </head>
     <body>
         <div class="wrapper">
@@ -32,7 +33,6 @@
             </div>
         </div>
 
-        <!-- footer -->
         {% include 'calendar/footer.html'%}
 
         <script type="text/javascript">
@@ -53,15 +53,34 @@
                 const dateList = [...Array(curLastDate + 1).keys()].slice(1);
 
                 for (let i = 0 ; i < firstDate ; i++) {
-                    dateList.unshift("");
+                    dateList.unshift(" ");
                 }
 
                 for (let i = curLastDay + 1; i < 7; i++) {
-                    dateList.push("");
+                    dateList.push(" ");
                 }
 
                 dateList.forEach((date, i) => {
-                    dateList[i] = `<div class="date">${date}</span></div>`;
+                    if (date == " ") {
+                        dateList[i] = `<div class="date"">${date}</div>`;
+                    }
+                    else {
+                        let link = "http://localhost:8000/todolist/" + year;
+
+                        if (month < 10) {
+                            link += "0";
+                        }
+
+                        link += (month + 1);
+
+                        if (date < 10) {
+                            link += "0";
+                        }
+
+                        link += date;
+
+                        dateList[i] = `<div class="date" onclick="location.href='${link}'">${date}</div>`;
+                    }
                 })
 
                 document.querySelector('.dates').innerHTML = dateList.join('');
