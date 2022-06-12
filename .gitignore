@@ -136,3 +136,4 @@ migrations/
 
 #static files
 _media/
+static
