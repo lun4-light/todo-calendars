@@ -4,18 +4,17 @@
 <html lang="kr">
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
         {% block title %}
         {% endblock %}
     </head>
     <body>
-        <!-- todo-list -->
-        {% block todolist %}
+        <!-- main area -->
+        {% block main_area %}
         {% endblock %}
         <!-- footer -->
         {% include 'todo_lists/footer.html' %}
         <script type="text/javascript">
-
-
         </script>
     </body>
 </html>

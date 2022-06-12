@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'todo_lists/base.html' %}
+
+{% block title %}
+    <title> Todo - {{ todo.pk }}</title>
+{% endblock %}
+
+{% block main_area %}
+    <div class="wrapper">
+        <div class="header">
+            <div class="todo-date">
+                {{ todo.date }}
+            </div>
+        </div>
+        <div class="todo-wrapper">
+            <div class="todo-title">
+                {{ todo.title }}
+            </div>
+            <div class="todo-text">
+                {{ todo.text }}
+            </div>
+            <div class="todo-author">
+                {{ todo.author }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

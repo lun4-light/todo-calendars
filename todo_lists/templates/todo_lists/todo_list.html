@@ -1,18 +1,33 @@
 {% extends 'todo_lists/base.html' %}
 
+{% load static %}
+
 {% block title %}
+    <link rel="stylesheet" href="{% static 'css/todolist.css' %}">
     <title>Todo Lists</title>
 {% endblock %}
 
-{% block todolist %}
+{% block main_area %}
     <div class="wrapper">
         <div class="header">
-            <div class="date">
-                {% TodoList.date %}
+            <div class="todo-date">
+                {{ date }}
             </div>
         </div>
-        <div class="todo-wrapper">
-
+        <div class="button-wrapper">
+            <a href="#" class="button-create" role="button">Create</a>
         </div>
+        {% if todo_list.count != 0 %}
+            <div class="list-wrapper">
+                {% for todo in todo_list %}
+                <div class="todo-wrapper">
+                    <div class="todo-title">
+                        {{ todo.title }}
+                        <a href="{{ todo.get_absolute_url }}" class="todo-detail" role="button">Detail</a>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
