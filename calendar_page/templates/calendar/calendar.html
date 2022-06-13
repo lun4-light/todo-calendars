@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 
+{% load static %}
+
 {% block title %}
     <title> Todo Calendar </title>
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
 {% endblock %}
 
 {% block main_area %}
