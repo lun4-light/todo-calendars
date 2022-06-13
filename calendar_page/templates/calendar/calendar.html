@@ -1,104 +1,99 @@
 <!DOCTYPE html>
 
-{% load static %}
-<html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <title> Todo Calendar </title>
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
-        <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
-    </head>
-    <body>
-        <div class="wrapper">
-            <div class="calendar">
-                <div class="header">
-                    <div class="year-month"></div>
-                    <div class="nav">
-                        <button class="nav-btn go-prev" onclick="prevMonth()">&lt;</button>
-                        <button class="nav-btn go-next" onclick="nextMonth()">&gt;</button>
-                    </div>
-                </div>
-                <div class="main">
-                    <div class="days">
-                        <div class="day">일</div>
-                        <div class="day">월</div>
-                        <div class="day">화</div>
-                        <div class="day">수</div>
-                        <div class="day">목</div>
-                        <div class="day">금</div>
-                        <div class="day">토</div>
-                    </div>
-                    <div class="dates"></div>
+{% block title %}
+    <title> Todo Calendar </title>
+{% endblock %}
+
+{% block main_area %}
+    <div class="wrapper">
+        <div class="calendar">
+            <div class="header">
+                <div class="year-month"></div>
+                <div class="nav">
+                    <button class="nav-btn go-prev" onclick="prevMonth()">&lt;</button>
+                    <button class="nav-btn go-next" onclick="nextMonth()">&gt;</button>
                 </div>
             </div>
+            <div class="main">
+                <div class="days">
+                    <div class="day">일</div>
+                    <div class="day">월</div>
+                    <div class="day">화</div>
+                    <div class="day">수</div>
+                    <div class="day">목</div>
+                    <div class="day">금</div>
+                    <div class="day">토</div>
+                </div>
+                <div class="dates"></div>
+            </div>
         </div>
+    </div>
 
-        {% include 'calendar/footer.html'%}
+    {% include 'calendar/footer.html'%}
 
-        <script type="text/javascript">
-            let date = new Date();
+    <script type="text/javascript">
+        let date = new Date();
 
-            const renderCalendar = () => {
-                const year = date.getFullYear();
-                const month = date.getMonth();
+        const renderCalendar = () => {
+            const year = date.getFullYear();
+            const month = date.getMonth();
 
-                document.querySelector('.year-month').textContent = `${year}년 ${month + 1}월`;
+            document.querySelector('.year-month').textContent = `${year}년 ${month + 1}월`;
 
-                const firstDay = new Date(year, month, 1);
-                const lastDate = new Date(year, month + 1, 0);
+            const firstDay = new Date(year, month, 1);
+            const lastDate = new Date(year, month + 1, 0);
 
-                const firstDate = firstDay.getDay();
-                const curLastDate = lastDate.getDate();
-                const curLastDay = lastDate.getDay();
-                const dateList = [...Array(curLastDate + 1).keys()].slice(1);
+            const firstDate = firstDay.getDay();
+            const curLastDate = lastDate.getDate();
+            const curLastDay = lastDate.getDay();
+            const dateList = [...Array(curLastDate + 1).keys()].slice(1);
 
-                for (let i = 0 ; i < firstDate ; i++) {
-                    dateList.unshift(" ");
+            for (let i = 0 ; i < firstDate ; i++) {
+                dateList.unshift(" ");
+            }
+
+            for (let i = curLastDay + 1; i < 7; i++) {
+                dateList.push(" ");
+            }
+
+            dateList.forEach((date, i) => {
+                if (date == " ") {
+                    dateList[i] = `<div class="date"">${date}</div>`;
                 }
+                else {
+                    let link = "http://localhost:8000/todolist/list/" + year;
 
-                for (let i = curLastDay + 1; i < 7; i++) {
-                    dateList.push(" ");
+                    if (month < 10) {
+                        link += "0";
+                    }
+
+                    link += (month + 1);
+
+                    if (date < 10) {
+                        link += "0";
+                    }
+
+                    link += date;
+
+                    dateList[i] = `<div class="date" onclick="location.href='${link}'">${date}</div>`;
                 }
+            })
 
-                dateList.forEach((date, i) => {
-                    if (date == " ") {
-                        dateList[i] = `<div class="date"">${date}</div>`;
-                    }
-                    else {
-                        let link = "http://localhost:8000/todolist/list/" + year;
+            document.querySelector('.dates').innerHTML = dateList.join('');
+        }
 
-                        if (month < 10) {
-                            link += "0";
-                        }
-
-                        link += (month + 1);
-
-                        if (date < 10) {
-                            link += "0";
-                        }
-
-                        link += date;
-
-                        dateList[i] = `<div class="date" onclick="location.href='${link}'">${date}</div>`;
-                    }
-                })
-
-                document.querySelector('.dates').innerHTML = dateList.join('');
-            }
-
-            const prevMonth = () => {
-                date.setDate(1);
-                date.setMonth(date.getMonth() - 1);
-                renderCalendar();
-            }
-
-            const nextMonth = () => {
-                date.setDate(1);
-                date.setMonth(date.getMonth() + 1);
-                renderCalendar();
-            }
-
+        const prevMonth = () => {
+            date.setDate(1);
+            date.setMonth(date.getMonth() - 1);
             renderCalendar();
-        </script>
-    </body>
-</html>
+        }
+
+        const nextMonth = () => {
+            date.setDate(1);
+            date.setMonth(date.getMonth() + 1);
+            renderCalendar();
+        }
+
+        renderCalendar();
+    </script>
+{% endblock %}
