@@ -13,8 +13,9 @@
                 {{ date }}
             </div>
         </div>
-        <div class="button-wrapper">
-            <a href="/todolist/create" class="button-create" role="button">Create</a>
+        <div class="btn-group" role="group" style="margin-bottom: 10px">
+            <a href="/todolist/create" type="button" class="btn btn-primary btn-group-vertical rounded-lg" role="button" style="margin-right: 3px; background-color: #9fcdff; border-color: white;">Create</a>
+            <a href="/" type="button" class="btn btn-primary btn-group-vertical rounded-lg" role="button" style="background-color: #9fcdff; border-color: white;">Main</a>
         </div>
         {% if todo_list.count != 0 %}
             <div class="list-wrapper">
