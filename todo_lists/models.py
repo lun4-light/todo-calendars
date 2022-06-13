@@ -21,7 +21,7 @@ class Todo(models.Model):
         return self.date.year * 10000 + self.date.month * 100 + self.date.day
 
     def get_absolute_url(self):
-        return f'/todolist/{self.pk}'
+        return f'/todolist/detail/{self.pk}'
 
     def get_content_markdown(self):
         return markdown(self.text)
