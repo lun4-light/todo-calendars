@@ -20,7 +20,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('calendar_page.urls')),
     path('todolist/', include('todo_lists.urls')),
+    path('markdownx/', include('markdownx.urls')),
     path('accounts/', include('allauth.urls')),
+    path('', include('calendar_page.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
