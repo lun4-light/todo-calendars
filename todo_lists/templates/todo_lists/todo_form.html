@@ -1,0 +1,25 @@
+{% extends 'todo_lists/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title> Create Todo </title>
+{% endblock %}
+
+{% block main_area %}
+    <div class="wrapper" style="display: flex; align-content: center; justify-content: center;">
+        <div class="create-form-wrapper" style="display:flex; flex-flow: row wrap; width: 40%; align-content: center; justify-content: center; text-align: center">
+            <h2 style="text-align: center; height: auto; margin:30px;"> 무엇을 해야 하나?</h2>
+            <div class="from-wrapper" style="height: auto; width: auto; box-sizing: border-box; text-align: center; padding: 20px; background-color: aliceblue; margin: 0px;">
+                <form class="form-inline" method="post" enctype="multipart/form-data" style="text-align: center;"> {% csrf_token %}
+                    <div class="form-group d-inline-block">
+                        {{ form | crispy }}
+                        <button type="submit" class="btn btn-primary float-md-none align-items-left"> 등록 </button>
+                        <!-- 취소 버튼 만들기 -->
+                    </div>
+                    {{ form.media }}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

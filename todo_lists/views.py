@@ -1,11 +1,36 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import redirect
 from django.utils.datetime_safe import datetime
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Todo
 
 
 # Create your views here.
+
+class TodoCreate(LoginRequiredMixin, CreateView):
+    model = Todo
+    fields = ['title', 'text', 'date']
+
+    def form_valid(self, form):
+        current_user = self.request.user
+        if current_user.is_authenticated:
+            form.instance.author = current_user
+            return super(TodoCreate, self).form_valid(form)
+        else:
+            return redirect('todo_lists:todo')
+
+
+class TodoUpdate(LoginRequiredMixin, UpdateView):
+    model = Todo
+    fields = ['title', 'text', 'date']
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return super(TodoUpdate, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
 
 class TodoDetail(DetailView):
     model = Todo

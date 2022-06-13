@@ -13,13 +13,17 @@
         </div>
         <div class="todo-wrapper">
             <div class="todo-title">
-                {{ todo.title }}
+                <h3 class="card-title" style="margin-top: 10px;">{{ todo.title }}</h3>
             </div>
             <div class="todo-text">
-                {{ todo.text }}
+                {{ todo.get_content_markdown | safe }}
             </div>
             <div class="todo-author">
                 {{ todo.author }}
+            </div>
+            <div class="btn-group" role="group" style="margin-bottom: 10px">
+                <button type="button" class="btn btn-secondary"> 수정 </button>
+                <button type="button" class="btn btn-danger"> 삭제 </button>
             </div>
         </div>
     </div>

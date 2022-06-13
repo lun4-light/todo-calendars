@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block title %}
-    <link rel="stylesheet" href="{% static 'css/todolist.css' %}">
     <title>Todo Lists</title>
 {% endblock %}
 
@@ -15,7 +14,7 @@
             </div>
         </div>
         <div class="button-wrapper">
-            <a href="#" class="button-create" role="button">Create</a>
+            <a href="/todolist/create" class="button-create" role="button">Create</a>
         </div>
         {% if todo_list.count != 0 %}
             <div class="list-wrapper">
@@ -23,7 +22,7 @@
                 <div class="todo-wrapper">
                     <div class="todo-title">
                         {{ todo.title }}
-                        <a href="{{ todo.get_absolute_url }}" class="todo-detail" role="button">Detail</a>
+                        <a href="detail/{{ todo.get_absolute_url }}" class="btn btn-link text-right" role="button">Detail</a>
                     </div>
                 </div>
             {% endfor %}
