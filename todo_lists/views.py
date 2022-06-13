@@ -1,6 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.utils.datetime_safe import datetime
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Todo
@@ -30,6 +31,17 @@ class TodoUpdate(LoginRequiredMixin, UpdateView):
             return super(TodoUpdate, self).dispatch(request, *args, **kwargs)
         else:
             raise PermissionDenied
+
+
+@login_required
+def todo_delete(request, pk):
+    todo = get_object_or_404(Todo, id=pk)
+    if todo.author == request.user:
+        date = todo.date_to_integer()
+        todo.delete()
+        return redirect(f'/todolist/list/{date}')
+    else:
+        return redirect('/')
 
 
 class TodoDetail(DetailView):
