@@ -136,4 +136,5 @@ migrations/
 
 #static files
 _media/
-static
+
+init_su.sh

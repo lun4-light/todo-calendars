@@ -11,7 +11,7 @@ from .models import Todo
 
 class TodoCreate(LoginRequiredMixin, CreateView):
     model = Todo
-    fields = ['title', 'text', 'date']
+    fields = ['title', 'date', 'text']
 
     def form_valid(self, form):
         current_user = self.request.user
@@ -24,7 +24,7 @@ class TodoCreate(LoginRequiredMixin, CreateView):
 
 class TodoUpdate(LoginRequiredMixin, UpdateView):
     model = Todo
-    fields = ['title', 'text', 'date']
+    fields = ['title', 'date', 'text']
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:

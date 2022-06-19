@@ -12,13 +12,14 @@
             <h2 style="text-align: center; height: auto; margin:30px;"> 무엇을 해야 하나?</h2>
             <div class="from-wrapper" style="height: auto; width: auto; box-sizing: border-box; text-align: center; padding: 20px; background-color: aliceblue; margin: 0px;">
                 <form class="form-inline" method="post" enctype="multipart/form-data" style="text-align: center;"> {% csrf_token %}
-                    <div class="form-group d-inline-block">
+                    <div class="form-group d-inline-block mt-3 mb-3">
                         {{ form | crispy }}
-                        <button type="submit" class="btn btn-primary float-md-none align-items-left" style="margin-top: 10px;"> 등록 </button>
-                        <!-- 취소 버튼 만들기 -->
+                        <button type="submit" class="btn btn-primary float-md-none align-items-left" style="margin-top: 10px;">등록</button>
+                        <a type="button" href="/" class="btn btn-danger float-md-none align-items-left" style="margin-top: 10px;">취소</a>
+                        {{ form.media }}
                     </div>
-                    {{ form.media }}
                 </form>
+
             </div>
         </div>
     </div>
