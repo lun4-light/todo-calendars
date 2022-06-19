@@ -1,0 +1,91 @@
+.todo-date {
+    display: flex;
+    width: 100%;
+    height: auto;
+
+    font-size: 20px;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.wrapper {
+    display: flex;
+    height: auto;
+    width: auto;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button-wrapper {
+    display: flex;
+    margin: 20px;
+    border-radius: 20px;
+    height: 40px;
+    width: 80px;
+    border: 1px solid silver;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.button-create {
+    text-align: right;
+}
+
+.list-wrapper {
+    border-color: #6f94c6;
+    border-radius: 20px;
+
+    background: #c4dce8;
+
+    min-width: 500px;
+    min-height: 500px;
+
+    padding: 5px;
+}
+
+.todo-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 500px;
+    height: 90%;
+    margin-bottom: 10px;
+
+    background-color: #e8e8e8;
+
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+.todo-title {
+    text-align: center;
+}
+
+.todo-text {
+    text-align: left;
+    height: 200px;
+    width: 90%;
+
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid silver;
+    background: white;
+}
+
+.todo-author {
+    text-align: center;
+    height: auto;
+
+    margin-bottom: 10px;
+}
